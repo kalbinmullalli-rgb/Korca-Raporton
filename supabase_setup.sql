@@ -19,6 +19,10 @@ create table if not exists public.reports (
 
 alter table public.reports enable row level security;
 
+grant select on table public.reports to anon, authenticated;
+grant insert, update, delete on table public.reports to authenticated;
+grant usage, select on sequence public.reports_id_seq to authenticated;
+
 drop policy if exists "Anyone can view reports" on public.reports;
 create policy "Anyone can view reports"
 on public.reports for select
